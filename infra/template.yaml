@@ -71,8 +71,8 @@ Resources:
   GetLessonsFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: backend/lambdas/getLessons/lambda_function.lambda_handler
-      CodeUri: ../
+      Handler: lambda_function.lambda_handler
+      CodeUri: ../backend/lambdas/getLessons/
       Events:
         GetLessons:
           Type: HttpApi
@@ -90,8 +90,8 @@ Resources:
   SubmitAnswerFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: backend/lambdas/submitAnswer/lambda_function.lambda_handler
-      CodeUri: ../
+      Handler: lambda_function.lambda_handler
+      CodeUri: ../backend/lambdas/submitAnswer/
       Events:
         SubmitAnswer:
           Type: HttpApi
@@ -110,8 +110,8 @@ Resources:
   TrackProgressFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: backend/lambdas/trackProgress/lambda_function.lambda_handler
-      CodeUri: ../
+      Handler: lambda_function.lambda_handler
+      CodeUri: ../backend/lambdas/trackProgress/
       Events:
         DailySchedule:
           Type: Schedule
@@ -129,8 +129,8 @@ Resources:
   GenerateReportFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: backend/lambdas/generateReport/lambda_function.lambda_handler
-      CodeUri: ../
+      Handler: lambda_function.lambda_handler
+      CodeUri: ../backend/lambdas/generateReport/
       Events:
         GenerateReport:
           Type: HttpApi
@@ -157,8 +157,8 @@ Resources:
   GetCalendarFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: backend/lambdas/getCalendar/lambda_function.lambda_handler
-      CodeUri: ../
+      Handler: lambda_function.lambda_handler
+      CodeUri: ../backend/lambdas/getCalendar/
       Events:
         GetCalendar:
           Type: HttpApi
@@ -174,8 +174,8 @@ Resources:
   GetLearningStyleFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: backend/lambdas/getLearningStyle/lambda_function.lambda_handler
-      CodeUri: ../
+      Handler: lambda_function.lambda_handler
+      CodeUri: ../backend/lambdas/getLearningStyle/
       Events:
         GetLearningStyle:
           Type: HttpApi
@@ -191,8 +191,8 @@ Resources:
   AiTutorFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: backend/lambdas/aiTutor/lambda_function.lambda_handler
-      CodeUri: ../
+      Handler: lambda_function.lambda_handler
+      CodeUri: ../backend/lambdas/aiTutor/
       Events:
         AiTutor:
           Type: HttpApi
