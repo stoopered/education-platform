@@ -83,6 +83,9 @@ Resources:
       Environment:
         Variables:
           TABLE_NAME: !Ref StudentProgressTable
+      Policies:
+        # Basic execution plus permission to read from the lessons file embedded in the function.  No external resources.
+        - AWSLambdaBasicExecutionRole
 
   SubmitAnswerFunction:
     Type: AWS::Serverless::Function
@@ -99,6 +102,10 @@ Resources:
       Environment:
         Variables:
           TABLE_NAME: !Ref StudentProgressTable
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref StudentProgressTable
 
   TrackProgressFunction:
     Type: AWS::Serverless::Function
@@ -114,6 +121,10 @@ Resources:
       Environment:
         Variables:
           TABLE_NAME: !Ref StudentProgressTable
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref StudentProgressTable
 
   GenerateReportFunction:
     Type: AWS::Serverless::Function
@@ -130,6 +141,18 @@ Resources:
       Environment:
         Variables:
           TABLE_NAME: !Ref StudentProgressTable
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBReadPolicy:
+            TableName: !Ref StudentProgressTable
+        - S3CrudPolicy:
+            BucketName: !Ref AssetBucket
+        - Statement:
+            Effect: Allow
+            Action:
+              - ses:SendEmail
+              - ses:SendRawEmail
+            Resource: "*"
 
   GetCalendarFunction:
     Type: AWS::Serverless::Function
@@ -143,6 +166,10 @@ Resources:
             Path: /calendar
             Method: GET
             ApiId: !Ref EducationApi
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - S3ReadPolicy:
+            BucketName: !Ref AssetBucket
 
   GetLearningStyleFunction:
     Type: AWS::Serverless::Function
@@ -156,6 +183,58 @@ Resources:
             Path: /learning-style
             Method: GET
             ApiId: !Ref EducationApi
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBReadPolicy:
+            TableName: !Ref StudentProgressTable
+
+  AiTutorFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: backend/lambdas/aiTutor/lambda_function.lambda_handler
+      CodeUri: ../
+      Events:
+        AiTutor:
+          Type: HttpApi
+          Properties:
+            Path: /ai
+            Method: POST
+            ApiId: !Ref EducationApi
+      Environment:
+        Variables:
+          AI_PROVIDER: !Ref AiProvider
+          OPENAI_API_KEY: !Ref OpenAiApiKey
+          OPENAI_MODEL: !Ref OpenAiModel
+          BEDROCK_MODEL: !Ref BedrockModel
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - Statement:
+            Effect: Allow
+            Action:
+              - bedrock:InvokeModel
+            Resource: "*"
+Parameters:
+  AiProvider:
+    Type: String
+    Default: "none"
+    AllowedValues:
+      - none
+      - openai
+      - bedrock
+    Description: "Which AI provider to use (openai or bedrock)."
+  OpenAiApiKey:
+    Type: String
+    Default: ""
+    NoEcho: true
+    Description: "OpenAI API key (only required if AI_PROVIDER=openai)."
+  OpenAiModel:
+    Type: String
+    Default: "gpt-3.5-turbo"
+    Description: "OpenAI model name."
+  BedrockModel:
+    Type: String
+    Default: "anthropic.claude-instant-v1"
+    Description: "Amazon Bedrock model identifier."
 
 Outputs:
   ApiUrl:

@@ -1,0 +1,267 @@
+{
+  "K": {
+    "Math": [
+      {
+        "id": "K-M-01",
+        "title": "Counting to 10",
+        "question": "How many apples are there?",
+        "choices": ["5", "7", "10"],
+        "answer": "7",
+        "explanation": "We count each apple to reach seven."
+      },
+      {
+        "id": "K-M-02",
+        "title": "Basic Addition",
+        "question": "What is 3 + 2?",
+        "choices": ["4", "5", "6"],
+        "answer": "5",
+        "explanation": "Adding three objects and two objects makes five."
+      }
+      ,
+      {
+        "id": "K-M-03",
+        "title": "Basic Subtraction",
+        "question": "What is 5 − 2?",
+        "choices": ["2", "3", "4"],
+        "answer": "3",
+        "explanation": "If you have five apples and take away two, you have three left."
+      },
+      {
+        "id": "K-M-04",
+        "title": "Comparing Numbers",
+        "question": "Which number is bigger: 4 or 6?",
+        "choices": ["4", "6"],
+        "answer": "6",
+        "explanation": "Six is greater than four."
+      },
+      {
+        "id": "K-M-05",
+        "title": "Shapes",
+        "question": "Which shape has three sides?",
+        "choices": ["Triangle", "Square", "Circle"],
+        "answer": "Triangle",
+        "explanation": "A triangle has three sides; a square has four and a circle has none."
+      }
+    ],
+    "Reading": [
+      {
+        "id": "K-R-01",
+        "title": "Sight Words",
+        "question": "Which word spells 'cat'?",
+        "choices": ["cap", "cat", "cot"],
+        "answer": "cat",
+        "explanation": "The letters c‑a‑t spell 'cat'."
+      }
+      ,
+      {
+        "id": "K-R-02",
+        "title": "Alphabet Order",
+        "question": "Which letter comes first in the alphabet?",
+        "choices": ["A", "B", "C"],
+        "answer": "A",
+        "explanation": "The alphabet starts with the letter A."
+      },
+      {
+        "id": "K-R-03",
+        "title": "Rhyming Words",
+        "question": "Which word rhymes with 'hat'?",
+        "choices": ["hit", "bat", "hot"],
+        "answer": "bat",
+        "explanation": "'Hat' and 'bat' both end with the 'at' sound."
+      },
+      {
+        "id": "K-R-04",
+        "title": "Sentence Comprehension",
+        "passage": "I like to eat apples.",
+        "question": "What do I like to eat?",
+        "choices": ["bananas", "apples", "oranges"],
+        "answer": "apples",
+        "explanation": "The sentence says 'I like to eat apples.'"
+      },
+      {
+        "id": "K-R-05",
+        "title": "Beginning Sounds",
+        "question": "Which word begins with the sound /b/?",
+        "choices": ["ball", "cat", "apple"],
+        "answer": "ball",
+        "explanation": "The /b/ sound starts the word 'ball'."
+      }
+    ],
+    "Science": [
+      {
+        "id": "K-S-01",
+        "title": "Seasons",
+        "question": "Which season is the coldest?",
+        "choices": ["Summer", "Winter", "Spring"],
+        "answer": "Winter",
+        "explanation": "Winter is cold with snow in many places."
+      }
+      ,
+      {
+        "id": "K-S-02",
+        "title": "Five Senses",
+        "question": "Which sense do we use to smell?",
+        "choices": ["Eyes", "Nose", "Ears"],
+        "answer": "Nose",
+        "explanation": "We use our nose to smell things."
+      },
+      {
+        "id": "K-S-03",
+        "title": "Animal Types",
+        "question": "Which one is a mammal?",
+        "choices": ["Fish", "Bird", "Dog"],
+        "answer": "Dog",
+        "explanation": "Dogs are mammals because they have fur and drink milk as babies."
+      },
+      {
+        "id": "K-S-04",
+        "title": "Plant Parts",
+        "question": "What part of a plant takes in water?",
+        "choices": ["Leaves", "Roots", "Flowers"],
+        "answer": "Roots",
+        "explanation": "Roots absorb water and nutrients from the soil."
+      },
+      {
+        "id": "K-S-05",
+        "title": "Weather",
+        "question": "What do we use when it rains?",
+        "choices": ["Umbrella", "Sunglasses", "Mittens"],
+        "answer": "Umbrella",
+        "explanation": "We use an umbrella to stay dry in the rain."
+      }
+    ]
+  },
+  "3": {
+    "Math": [
+      {
+        "id": "3-M-01",
+        "title": "Multiplication Facts",
+        "question": "What is 4 x 3?",
+        "choices": ["7", "12", "9"],
+        "answer": "12",
+        "explanation": "Four groups of three equals twelve."
+      },
+      {
+        "id": "3-M-02",
+        "title": "Fractions",
+        "question": "What fraction of the circle is shaded?",
+        "choices": ["1/2", "1/3", "1/4"],
+        "answer": "1/2",
+        "explanation": "Half of the circle is shaded."
+      }
+      ,
+      {
+        "id": "3-M-03",
+        "title": "Division",
+        "question": "What is 12 ÷ 4?",
+        "choices": ["2", "3", "4"],
+        "answer": "3",
+        "explanation": "Twelve divided by four equals three."
+      },
+      {
+        "id": "3-M-04",
+        "title": "Area of a Rectangle",
+        "question": "If a rectangle is 4 units long and 3 units wide, what is its area?",
+        "choices": ["7", "12", "16"],
+        "answer": "12",
+        "explanation": "Area equals length times width: 4 × 3 = 12."
+      },
+      {
+        "id": "3-M-05",
+        "title": "Place Value",
+        "question": "What is the value of the 7 in 573?",
+        "choices": ["7", "70", "700"],
+        "answer": "70",
+        "explanation": "The 7 is in the tens place, so its value is seventy."
+      }
+    ],
+    "Reading": [
+      {
+        "id": "3-R-01",
+        "title": "Reading Comprehension",
+        "passage": "The sun warms the earth and helps plants grow.",
+        "question": "What does the sun do?",
+        "choices": ["It cools the earth", "It warms the earth", "It makes rain"],
+        "answer": "It warms the earth",
+        "explanation": "The passage says the sun warms the earth."
+      }
+      ,
+      {
+        "id": "3-R-02",
+        "title": "Vocabulary",
+        "question": "What does 'cautious' mean?",
+        "choices": ["careful", "fast", "loud"],
+        "answer": "careful",
+        "explanation": "'Cautious' means being careful or showing caution."
+      },
+      {
+        "id": "3-R-03",
+        "title": "Main Idea",
+        "passage": "Sally's dog ran away and she searched for hours until she found him at the park.",
+        "question": "What is the main idea of the story?",
+        "choices": ["Sally lost her dog", "The park is fun", "Dogs can run fast"],
+        "answer": "Sally lost her dog",
+        "explanation": "The story is mainly about Sally losing and finding her dog."
+      },
+      {
+        "id": "3-R-04",
+        "title": "Synonyms",
+        "question": "Which word is a synonym for 'happy'?",
+        "choices": ["sad", "joyful", "angry"],
+        "answer": "joyful",
+        "explanation": "'Joyful' means the same as 'happy'."
+      },
+      {
+        "id": "3-R-05",
+        "title": "Antonyms",
+        "question": "Which word is the opposite of 'cold'?",
+        "choices": ["hot", "warm", "cool"],
+        "answer": "hot",
+        "explanation": "'Hot' is the antonym, or opposite, of 'cold'."
+      }
+    ],
+    "Science": [
+      {
+        "id": "3-S-01",
+        "title": "States of Matter",
+        "question": "Water can be a solid, liquid, or what?",
+        "choices": ["Gas", "Metal", "Wood"],
+        "answer": "Gas",
+        "explanation": "Water becomes water vapor, which is a gas."
+      }
+      ,
+      {
+        "id": "3-S-02",
+        "title": "Solar System",
+        "question": "Which planet is known as the red planet?",
+        "choices": ["Venus", "Mars", "Jupiter"],
+        "answer": "Mars",
+        "explanation": "Mars appears red because of iron oxide on its surface."
+      },
+      {
+        "id": "3-S-03",
+        "title": "Life Cycles",
+        "question": "A butterfly starts as an egg, then becomes a caterpillar, a pupa, and finally a _______.",
+        "choices": ["larva", "adult butterfly", "tadpole"],
+        "answer": "adult butterfly",
+        "explanation": "After the pupa stage, a butterfly emerges as an adult."
+      },
+      {
+        "id": "3-S-04",
+        "title": "Photosynthesis",
+        "question": "What do plants need to make food?",
+        "choices": ["water and sunlight", "soil and rocks", "air only"],
+        "answer": "water and sunlight",
+        "explanation": "Plants use water and sunlight to make food through photosynthesis."
+      },
+      {
+        "id": "3-S-05",
+        "title": "Conductors",
+        "question": "Which material is a conductor of electricity?",
+        "choices": ["metal", "plastic", "wood"],
+        "answer": "metal",
+        "explanation": "Metals allow electricity to flow through them."
+      }
+    ]
+  }
+}
