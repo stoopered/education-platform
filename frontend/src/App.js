@@ -51,15 +51,37 @@ export default function App() {
     fetchLessons();
   }, []);
 
+  const renderLessons = () => {
+    if (!lessons) return null;
+    // The API returns { date, grade, lessons: { Math: {...}, Reading: {...}, ... } }
+    const subjects = Object.keys(lessons.lessons || {});
+    return subjects.map((subject) => {
+      const item = lessons.lessons[subject];
+      if (!item) return null;
+      return (
+        <div key={item.id} style={{ marginBottom: '1.5rem' }}>
+          <h3>{subject}: {item.title}</h3>
+          {item.passage && <p><em>{item.passage}</em></p>}
+          <p><strong>Question:</strong> {item.question}</p>
+          <ul>
+            {item.choices && item.choices.map((choice) => (
+              <li key={choice}>{choice}</li>
+            ))}
+          </ul>
+        </div>
+      );
+    });
+  };
+
   return (
     <main style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
       <h1>Education Platform</h1>
       {loading && <p>Loading today’s lesson…</p>}
       {lessons && (
         <div>
-          <h2>{lessons.title}</h2>
-          <p>{lessons.description}</p>
-          {/* Render questions, games and audio links here */}
+          <p>Date: {lessons.date}</p>
+          <p>Grade: {lessons.grade}</p>
+          {renderLessons()}
         </div>
       )}
     </main>
