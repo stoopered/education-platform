@@ -1,0 +1,167 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Serverless AI‑Powered Learning Platform
+
+Globals:
+  Function:
+    Runtime: python3.11
+    MemorySize: 256
+    Timeout: 10
+    Environment:
+      Variables:
+        TABLE_NAME: !Ref StudentProgressTable
+
+Resources:
+  ## Storage
+  WebsiteBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: false
+        BlockPublicPolicy: false
+        IgnorePublicAcls: false
+        RestrictPublicBuckets: false
+  AssetBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      VersioningConfiguration:
+        Status: Enabled
+
+  ## Database
+  StudentProgressTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: studentId
+          AttributeType: S
+        - AttributeName: timestamp
+          AttributeType: S
+      KeySchema:
+        - AttributeName: studentId
+          KeyType: HASH
+        - AttributeName: timestamp
+          KeyType: RANGE
+      BillingMode: PAY_PER_REQUEST
+
+  ## Authentication
+  UserPool:
+    Type: AWS::Cognito::UserPool
+    Properties:
+      UserPoolName: education-platform-user-pool
+      Policies:
+        PasswordPolicy:
+          MinimumLength: 8
+      AutoVerifiedAttributes:
+        - email
+  UserPoolClient:
+    Type: AWS::Cognito::UserPoolClient
+    Properties:
+      ClientName: education-platform-web-client
+      GenerateSecret: false
+      UserPoolId: !Ref UserPool
+
+  ## API Gateway
+  EducationApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      StageName: prod
+
+  ## Lambda Functions
+  GetLessonsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: backend/lambdas/getLessons/lambda_function.lambda_handler
+      CodeUri: ../
+      Events:
+        GetLessons:
+          Type: HttpApi
+          Properties:
+            Path: /lessons
+            Method: GET
+            ApiId: !Ref EducationApi
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref StudentProgressTable
+
+  SubmitAnswerFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: backend/lambdas/submitAnswer/lambda_function.lambda_handler
+      CodeUri: ../
+      Events:
+        SubmitAnswer:
+          Type: HttpApi
+          Properties:
+            Path: /answer
+            Method: POST
+            ApiId: !Ref EducationApi
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref StudentProgressTable
+
+  TrackProgressFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: backend/lambdas/trackProgress/lambda_function.lambda_handler
+      CodeUri: ../
+      Events:
+        DailySchedule:
+          Type: Schedule
+          Properties:
+            Schedule: rate(1 day)
+            Enabled: true
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref StudentProgressTable
+
+  GenerateReportFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: backend/lambdas/generateReport/lambda_function.lambda_handler
+      CodeUri: ../
+      Events:
+        GenerateReport:
+          Type: HttpApi
+          Properties:
+            Path: /report
+            Method: POST
+            ApiId: !Ref EducationApi
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref StudentProgressTable
+
+  GetCalendarFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: backend/lambdas/getCalendar/lambda_function.lambda_handler
+      CodeUri: ../
+      Events:
+        GetCalendar:
+          Type: HttpApi
+          Properties:
+            Path: /calendar
+            Method: GET
+            ApiId: !Ref EducationApi
+
+  GetLearningStyleFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: backend/lambdas/getLearningStyle/lambda_function.lambda_handler
+      CodeUri: ../
+      Events:
+        GetLearningStyle:
+          Type: HttpApi
+          Properties:
+            Path: /learning-style
+            Method: GET
+            ApiId: !Ref EducationApi
+
+Outputs:
+  ApiUrl:
+    Description: "HTTP API endpoint URL"
+    Value: !Sub "https://${EducationApi}.execute-api.${AWS::Region}.amazonaws.com/prod"
+  WebsiteBucketName:
+    Value: !Ref WebsiteBucket
+  AssetBucketName:
+    Value: !Ref AssetBucket
