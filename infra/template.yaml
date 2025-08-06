@@ -66,6 +66,17 @@ Resources:
     Type: AWS::Serverless::HttpApi
     Properties:
       StageName: prod
+      CorsConfiguration:
+        AllowOrigins:
+          - "http://localhost:3000"
+          - "http://127.0.0.1:3000"
+        AllowMethods:
+          - GET
+          - POST
+        AllowHeaders:
+          - Content-Type
+          - Authorization
+        MaxAge: 600
 
   ## Lambda Functions
   GetLessonsFunction:
