@@ -19,5 +19,7 @@
     "@babel/core": "^7.22.15",
     "@babel/preset-env": "^7.22.15",
     "@babel/preset-react": "^7.22.5"
+    ,
+    "serve-index": "^1.9.1"
   }
 }
