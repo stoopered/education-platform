@@ -24,7 +24,12 @@ Amplify.configure({
     endpoints: [
       {
         name: 'EducationApi',
-        endpoint: env.REACT_APP_API_URL || 'http://127.0.0.1:3000',
+        // The default API URL points at the local backend on port 3001.
+        // If REACT_APP_API_URL is defined in the environment (e.g. via
+        // docker-compose), it will override this value.  Without an
+        // override, the front‑end will attempt to call port 3001 on
+        // localhost.
+        endpoint: env.REACT_APP_API_URL || 'http://127.0.0.1:3001',
         region: env.REACT_APP_REGION || 'us-east-1',
       },
     ],
