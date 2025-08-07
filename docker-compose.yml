@@ -1,0 +1,54 @@
+version: '3.8'
+
+# docker-compose configuration for local development
+#
+# This file defines two services: `backend` and `frontend`.  The
+# backend service runs a Flask server that proxies API requests to the
+# Lambda handlers.  The frontend service runs the React development
+# server and communicates with the backend via the internal Docker
+# network.  To bring up the stack run:
+#
+#   docker-compose up --build
+#
+# You can override environment variables such as `OPENAI_API_KEY` and
+# `AI_PROVIDER` by supplying them when running docker-compose or by
+# creating an `.env` file in the repository root.
+
+services:
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "3001:3001"
+    environment:
+      # Configure the AI provider (openai or bedrock).  The default
+      # provider is `openai`.  Set `AI_PROVIDER=none` to use
+      # deterministic responses only.
+      AI_PROVIDER: ${AI_PROVIDER:-openai}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-3.5-turbo}
+      BEDROCK_MODEL: ${BEDROCK_MODEL:-anthropic.claude-instant-v1}
+      CORS_ORIGINS: ${CORS_ORIGINS:-*}
+    volumes:
+      # Mount lessons and lambdas for hot-reloading during development
+      - ./backend/lambdas:/app/lambdas
+      - ./backend/lessons:/app/lessons
+    depends_on:
+      - frontend
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "3000:3000"
+    environment:
+      # Point the React app to the backend service within the Docker network
+      REACT_APP_API_URL: ${REACT_APP_API_URL:-http://backend:3001}
+      REACT_APP_REGION: ${REACT_APP_REGION:-us-east-1}
+      REACT_APP_USER_POOL_ID: ${REACT_APP_USER_POOL_ID:-}
+      REACT_APP_USER_POOL_CLIENT: ${REACT_APP_USER_POOL_CLIENT:-}
+    volumes:
+      # Mount source for hot-reloading
+      - ./frontend/src:/app/src
+    depends_on:
+      - backend

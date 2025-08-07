@@ -59,3 +59,50 @@ The `infra` directory contains both a **SAM template** (`template.yaml`) and **T
 
 * The code provided here is a starting point.  You will need to fill out the lesson content, implement the AI prompt logic and fine‑tune IAM permissions.
 * See the accompanying project plan for design details and free‑tier considerations.
+
+## Running Locally with Docker
+
+In addition to running the backend via the SAM CLI and the frontend via
+`npm start`, you can spin up the entire stack using Docker.  This is
+particularly useful if you want to test the application without
+installing Python or Node.js on your host machine.
+
+The repository includes a `docker-compose.yml` file and Dockerfiles
+for both the backend and frontend.  To build and run the containers:
+
+1. Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) if
+   you haven’t already.
+2. From the `education-platform` directory run:
+
+   ```bash
+   # Build the images and start the services
+   docker-compose up --build
+   ```
+
+   This command creates two containers: `backend` (Flask API on
+   port 3001) and `frontend` (React app on port 3000).  The
+   containers communicate over an internal Docker network and expose
+   their ports to your localhost.  Once both services are up you can
+   open your browser to `http://localhost:3000` to interact with the
+   app.
+
+3. Environment variables for the AI provider and OpenAI/Bedrock
+   credentials can be passed via the `docker-compose` command or
+   defined in a `.env` file.  For example:
+
+   ```bash
+   AI_PROVIDER=openai OPENAI_API_KEY=sk-your-key \
+   docker-compose up --build
+   ```
+
+   When no AI provider is configured the backend falls back to
+   deterministic responses.
+
+4. Source code changes under `backend/lambdas` and `frontend/src` are
+   automatically reflected in the running containers thanks to bind
+   mounts.  You may need to refresh your browser to see the changes.
+
+Stopping the services is as simple as pressing `Ctrl+C` in the
+terminal.  If you encounter caching issues, add the `--force-recreate`
+flag to the `docker-compose` command to rebuild containers from
+scratch.
