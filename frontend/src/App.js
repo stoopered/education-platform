@@ -155,15 +155,24 @@ function Dashboard({ grade, onLogout }) {
 }
 
 export default function App() {
-  const [stage, setStage] = useState('loading');
+  // Allow skipping login for local development by setting
+  // REACT_APP_SKIP_LOGIN=true.  When skipLogin is true the app
+  // immediately shows the grade selector.
+  const skipLogin = env.REACT_APP_SKIP_LOGIN === 'true';
+  const [stage, setStage] = useState(skipLogin ? 'grade' : 'loading');
   const [grade, setGrade] = useState(null);
 
   useEffect(() => {
+    if (skipLogin) {
+      // Skip authentication check entirely
+      setStage('grade');
+      return;
+    }
     // Check if user is already signed in
     Auth.currentAuthenticatedUser()
       .then(() => setStage('grade'))
       .catch(() => setStage('login'));
-  }, []);
+  }, [skipLogin]);
 
   const handleLogin = () => {
     setStage('grade');
