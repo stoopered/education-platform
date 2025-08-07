@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   entry: './src/index.js',
@@ -31,4 +32,20 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx'],
   },
+
+  /*
+   * Inject selected environment variables into the bundle at build time.
+   * Without this plugin, variables like process.env.REACT_APP_API_URL will
+   * be undefined in the browser.  Compose or your shell can set these
+   * variables when building the image or running `npm start` locally.
+   */
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.REACT_APP_API_URL': JSON.stringify(process.env.REACT_APP_API_URL),
+      'process.env.REACT_APP_REGION': JSON.stringify(process.env.REACT_APP_REGION),
+      'process.env.REACT_APP_USER_POOL_ID': JSON.stringify(process.env.REACT_APP_USER_POOL_ID),
+      'process.env.REACT_APP_USER_POOL_CLIENT': JSON.stringify(process.env.REACT_APP_USER_POOL_CLIENT),
+      'process.env.REACT_APP_SKIP_LOGIN': JSON.stringify(process.env.REACT_APP_SKIP_LOGIN),
+    }),
+  ],
 };

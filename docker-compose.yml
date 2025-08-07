@@ -46,6 +46,7 @@ services:
       REACT_APP_REGION: ${REACT_APP_REGION:-us-east-1}
       REACT_APP_USER_POOL_ID: ${REACT_APP_USER_POOL_ID:-}
       REACT_APP_USER_POOL_CLIENT: ${REACT_APP_USER_POOL_CLIENT:-}
+      REACT_APP_SKIP_LOGIN: ${REACT_APP_SKIP_LOGIN:-false}
     volumes:
       # Mount source for hot-reloading
       - ./frontend/src:/app/src
