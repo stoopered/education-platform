@@ -36,59 +36,163 @@ Amplify.configure({
   },
 });
 
-export default function App() {
+function LoginForm({ onLogin }) {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    try {
+      await Auth.signIn(username, password);
+      onLogin();
+    } catch (err) {
+      console.error('Login failed', err);
+      setError('Login failed. Please check your credentials.');
+    }
+  };
+
+  return (
+    <div style={{ maxWidth: '400px', margin: '2rem auto', padding: '2rem', border: '1px solid #ccc', borderRadius: '8px' }}>
+      <h2 style={{ textAlign: 'center' }}>Welcome</h2>
+      <p style={{ textAlign: 'center' }}>Sign in to continue</p>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+      <form onSubmit={handleSubmit}>
+        <div style={{ marginBottom: '1rem' }}>
+          <label htmlFor="username" style={{ display: 'block', marginBottom: '0.5rem' }}>Username</label>
+          <input id="username" type="text" value={username} onChange={(e) => setUsername(e.target.value)} style={{ width: '100%', padding: '0.5rem' }} />
+        </div>
+        <div style={{ marginBottom: '1rem' }}>
+          <label htmlFor="password" style={{ display: 'block', marginBottom: '0.5rem' }}>Password</label>
+          <input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} style={{ width: '100%', padding: '0.5rem' }} />
+        </div>
+        <button type="submit" style={{ width: '100%', padding: '0.75rem', backgroundColor: '#0070f3', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>Sign In</button>
+      </form>
+    </div>
+  );
+}
+
+function GradeSelector({ onSelect }) {
+  return (
+    <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+      <h2>Select Your Grade</h2>
+      <p>Please choose your grade level to begin.</p>
+      <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+        <button onClick={() => onSelect('K')} style={{ padding: '1rem 2rem', fontSize: '1rem', backgroundColor: '#34c759', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>Kindergarten</button>
+        <button onClick={() => onSelect('3')} style={{ padding: '1rem 2rem', fontSize: '1rem', backgroundColor: '#5856d6', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>3rd Grade</button>
+      </div>
+    </div>
+  );
+}
+
+function LessonCard({ subject, lesson }) {
+  // Use emojis as simple icons for each subject
+  const iconMap = {
+    Math: '🔢',
+    Reading: '📖',
+    Science: '🔬',
+  };
+  const icon = iconMap[subject] || '📚';
+  return (
+    <div style={{ border: '1px solid #eaeaea', borderRadius: '8px', padding: '1rem', marginBottom: '1rem', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
+      <h3>{icon} {subject}: {lesson.title}</h3>
+      {lesson.passage && <p style={{ fontStyle: 'italic', color: '#555' }}>{lesson.passage}</p>}
+      <p><strong>Question:</strong> {lesson.question}</p>
+      {lesson.choices && (
+        <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
+          {lesson.choices.map((choice) => (
+            <li key={choice} style={{ padding: '0.25rem 0' }}>• {choice}</li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
+function Dashboard({ grade, onLogout }) {
   const [lessons, setLessons] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  // Example: fetch today’s lessons when the component mounts
   useEffect(() => {
     const fetchLessons = async () => {
       setLoading(true);
+      setError('');
       try {
-        const res = await API.get('EducationApi', '/lessons', {});
+        const res = await API.get('EducationApi', '/lessons', { queryStringParameters: { grade } });
         setLessons(res);
       } catch (err) {
         console.error('Failed to fetch lessons', err);
+        setError('Unable to load lessons. Please try again later.');
       } finally {
         setLoading(false);
       }
     };
     fetchLessons();
-  }, []);
-
-  const renderLessons = () => {
-    if (!lessons) return null;
-    // The API returns { date, grade, lessons: { Math: {...}, Reading: {...}, ... } }
-    const subjects = Object.keys(lessons.lessons || {});
-    return subjects.map((subject) => {
-      const item = lessons.lessons[subject];
-      if (!item) return null;
-      return (
-        <div key={item.id} style={{ marginBottom: '1.5rem' }}>
-          <h3>{subject}: {item.title}</h3>
-          {item.passage && <p><em>{item.passage}</em></p>}
-          <p><strong>Question:</strong> {item.question}</p>
-          <ul>
-            {item.choices && item.choices.map((choice) => (
-              <li key={choice}>{choice}</li>
-            ))}
-          </ul>
-        </div>
-      );
-    });
-  };
+  }, [grade]);
 
   return (
-    <main style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
-      <h1>Education Platform</h1>
+    <div style={{ maxWidth: '800px', margin: '2rem auto', padding: '1rem' }}>
+      <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+        <h1 style={{ margin: 0 }}>Education Platform</h1>
+        <button onClick={onLogout} style={{ background: 'transparent', border: 'none', color: '#0070f3', cursor: 'pointer' }}>Sign Out</button>
+      </header>
       {loading && <p>Loading today’s lesson…</p>}
+      {error && <p style={{ color: 'red' }}>{error}</p>}
       {lessons && (
         <div>
-          <p>Date: {lessons.date}</p>
-          <p>Grade: {lessons.grade}</p>
-          {renderLessons()}
+          <p><strong>Date:</strong> {lessons.date}</p>
+          <p><strong>Grade:</strong> {lessons.grade}</p>
+          {Object.keys(lessons.lessons || {}).map((subject) => {
+            const lesson = lessons.lessons[subject];
+            return <LessonCard key={subject} subject={subject} lesson={lesson} />;
+          })}
         </div>
       )}
-    </main>
+    </div>
   );
+}
+
+export default function App() {
+  const [stage, setStage] = useState('loading');
+  const [grade, setGrade] = useState(null);
+
+  useEffect(() => {
+    // Check if user is already signed in
+    Auth.currentAuthenticatedUser()
+      .then(() => setStage('grade'))
+      .catch(() => setStage('login'));
+  }, []);
+
+  const handleLogin = () => {
+    setStage('grade');
+  };
+  const handleSelectGrade = (g) => {
+    setGrade(g);
+    setStage('dashboard');
+  };
+  const handleLogout = async () => {
+    try {
+      await Auth.signOut();
+    } catch (err) {
+      console.error('Failed to sign out', err);
+    }
+    setGrade(null);
+    setStage('login');
+  };
+
+  if (stage === 'loading') {
+    return <p style={{ textAlign: 'center', marginTop: '2rem' }}>Loading…</p>;
+  }
+  if (stage === 'login') {
+    return <LoginForm onLogin={handleLogin} />;
+  }
+  if (stage === 'grade') {
+    return <GradeSelector onSelect={handleSelectGrade} />;
+  }
+  if (stage === 'dashboard') {
+    return <Dashboard grade={grade} onLogout={handleLogout} />;
+  }
+  return null;
 }
