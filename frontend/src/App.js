@@ -12,25 +12,30 @@ import { Amplify, API, Auth } from 'aws-amplify';
  * object when `process` is not available.  This allows the application to
  * start even if no environment variables are injected.
  */
-const env = typeof process !== 'undefined' && process.env ? process.env : {};
+// Environment variables injected at build time via webpack.DefinePlugin.  In
+// the browser, the real `process` object is undefined; however, the
+// DefinePlugin replaces references like `process.env.REACT_APP_API_URL` with
+// their literal values.  We fall back to sensible defaults if a
+// variable is undefined.
+
+const API_URL = (typeof process !== 'undefined' && process.env && process.env.REACT_APP_API_URL) || 'http://127.0.0.1:3001';
+const REGION = (typeof process !== 'undefined' && process.env && process.env.REACT_APP_REGION) || 'us-east-1';
+const USER_POOL_ID = (typeof process !== 'undefined' && process.env && process.env.REACT_APP_USER_POOL_ID) || '';
+const USER_POOL_CLIENT = (typeof process !== 'undefined' && process.env && process.env.REACT_APP_USER_POOL_CLIENT) || '';
+const SKIP_LOGIN_FLAG = (typeof process !== 'undefined' && process.env && process.env.REACT_APP_SKIP_LOGIN) || 'false';
 
 Amplify.configure({
   Auth: {
-    region: env.REACT_APP_REGION || 'us-east-1',
-    userPoolId: env.REACT_APP_USER_POOL_ID || '',
-    userPoolWebClientId: env.REACT_APP_USER_POOL_CLIENT || '',
+    region: REGION,
+    userPoolId: USER_POOL_ID,
+    userPoolWebClientId: USER_POOL_CLIENT,
   },
   API: {
     endpoints: [
       {
         name: 'EducationApi',
-        // The default API URL points at the local backend on port 3001.
-        // If REACT_APP_API_URL is defined in the environment (e.g. via
-        // docker-compose), it will override this value.  Without an
-        // override, the front‑end will attempt to call port 3001 on
-        // localhost.
-        endpoint: env.REACT_APP_API_URL || 'http://127.0.0.1:3001',
-        region: env.REACT_APP_REGION || 'us-east-1',
+        endpoint: API_URL,
+        region: REGION,
       },
     ],
   },
@@ -157,8 +162,9 @@ function Dashboard({ grade, onLogout }) {
 export default function App() {
   // Allow skipping login for local development by setting
   // REACT_APP_SKIP_LOGIN=true.  When skipLogin is true the app
-  // immediately shows the grade selector.
-  const skipLogin = env.REACT_APP_SKIP_LOGIN === 'true';
+  // immediately shows the grade selector.  The flag is pulled from
+  // SKIP_LOGIN_FLAG which is set at build time via DefinePlugin.
+  const skipLogin = SKIP_LOGIN_FLAG === 'true';
   const [stage, setStage] = useState(skipLogin ? 'grade' : 'loading');
   const [grade, setGrade] = useState(null);
 
