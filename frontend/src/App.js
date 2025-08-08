@@ -91,7 +91,7 @@ function GradeSelector({ onSelect }) {
   );
 }
 
-function LessonCard({ subject, lesson }) {
+function LessonCard({ subject, lesson, grade }) {
   // Use emojis as simple icons for each subject
   const iconMap = {
     Math: '🔢',
@@ -99,6 +99,39 @@ function LessonCard({ subject, lesson }) {
     Science: '🔬',
   };
   const icon = iconMap[subject] || '📚';
+  // State to track the selected answer and AI feedback
+  const [selectedChoice, setSelectedChoice] = useState(null);
+  const [feedback, setFeedback] = useState('');
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleChoice = async (choice) => {
+    // Prevent multiple submissions
+    if (submitting || selectedChoice) return;
+    setSelectedChoice(choice);
+    setSubmitting(true);
+    try {
+      // Prepare the request body for the AI tutor
+      const body = {
+        grade: grade,
+        subject: subject,
+        question: lesson.question,
+        studentAnswer: choice,
+        correctAnswer: lesson.answer,
+        explanation: lesson.explanation || '',
+      };
+      const response = await API.post('EducationApi', '/ai', { body });
+      if (response && response.response) {
+        setFeedback(response.response);
+      } else {
+        setFeedback('Thank you for your answer!');
+      }
+    } catch (err) {
+      console.error('AI call failed', err);
+      setFeedback('Thank you for your answer!');
+    } finally {
+      setSubmitting(false);
+    }
+  };
   return (
     <div style={{ border: '1px solid #eaeaea', borderRadius: '8px', padding: '1rem', marginBottom: '1rem', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
       <h3>{icon} {subject}: {lesson.title}</h3>
@@ -107,9 +140,31 @@ function LessonCard({ subject, lesson }) {
       {lesson.choices && (
         <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
           {lesson.choices.map((choice) => (
-            <li key={choice} style={{ padding: '0.25rem 0' }}>• {choice}</li>
+            <li key={choice} style={{ padding: '0.25rem 0' }}>
+              <button
+                onClick={() => handleChoice(choice)}
+                disabled={!!selectedChoice}
+                style={{
+                  padding: '0.5rem 1rem',
+                  margin: '0.25rem 0',
+                  backgroundColor: selectedChoice === choice ? '#0070f3' : '#e2e8f0',
+                  color: selectedChoice === choice ? '#fff' : '#000',
+                  border: 'none',
+                  borderRadius: '4px',
+                  cursor: selectedChoice ? 'default' : 'pointer',
+                  width: '100%',
+                  textAlign: 'left',
+                }}
+              >
+                {choice}
+              </button>
+            </li>
           ))}
         </ul>
+      )}
+      {/* Display AI feedback after selection */}
+      {feedback && (
+        <p style={{ marginTop: '0.5rem', color: '#2c5282' }}><em>{feedback}</em></p>
       )}
     </div>
   );
@@ -151,7 +206,14 @@ function Dashboard({ grade, onLogout }) {
           <p><strong>Grade:</strong> {lessons.grade}</p>
           {Object.keys(lessons.lessons || {}).map((subject) => {
             const lesson = lessons.lessons[subject];
-            return <LessonCard key={subject} subject={subject} lesson={lesson} />;
+            return (
+              <LessonCard
+                key={subject}
+                subject={subject}
+                lesson={lesson}
+                grade={lessons.grade}
+              />
+            );
           })}
         </div>
       )}

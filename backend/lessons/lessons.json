@@ -42,6 +42,87 @@
         "answer": "Triangle",
         "explanation": "A triangle has three sides; a square has four and a circle has none."
       }
+      ,
+      {
+        "id": "K-M-06",
+        "title": "One More",
+        "question": "What number is one more than 8?",
+        "choices": ["7", "8", "9"],
+        "answer": "9",
+        "explanation": "One more than eight is nine."
+      },
+      {
+        "id": "K-M-07",
+        "title": "One Less",
+        "question": "What number is one less than 5?",
+        "choices": ["4", "5", "6"],
+        "answer": "4",
+        "explanation": "One less than five is four."
+      },
+      {
+        "id": "K-M-08",
+        "title": "Number Sequencing",
+        "question": "Which number is smallest?",
+        "choices": ["3", "1", "2"],
+        "answer": "1",
+        "explanation": "One is the smallest number among the options."
+      },
+      {
+        "id": "K-M-09",
+        "title": "Odd or Even",
+        "question": "Is the number 6 odd or even?",
+        "choices": ["Odd", "Even"],
+        "answer": "Even",
+        "explanation": "Six can be split into two equal groups, so it is even."
+      },
+      {
+        "id": "K-M-10",
+        "title": "Missing Number",
+        "question": "What number is missing? 3, 4, _, 6",
+        "choices": ["5", "7", "8"],
+        "answer": "5",
+        "explanation": "The sequence counts up by one: 3, 4, 5, 6."
+      },
+      {
+        "id": "K-M-11",
+        "title": "Counting Objects",
+        "question": "How many fingers are on one hand?",
+        "choices": ["3", "4", "5"],
+        "answer": "5",
+        "explanation": "Most people have five fingers on one hand."
+      },
+      {
+        "id": "K-M-12",
+        "title": "Compare Numbers",
+        "question": "Which number is greater: 2 or 9?",
+        "choices": ["2", "9"],
+        "answer": "9",
+        "explanation": "Nine is larger than two."
+      },
+      {
+        "id": "K-M-13",
+        "title": "Add Two Numbers",
+        "question": "What is 1 + 3?",
+        "choices": ["3", "4", "5"],
+        "answer": "4",
+        "explanation": "One plus three equals four."
+      },
+      {
+        "id": "K-M-14",
+        "title": "Subtract Two Numbers",
+        "question": "What is 7 − 1?",
+        "choices": ["5", "6", "7"],
+        "answer": "6",
+        "explanation": "Seven minus one equals six."
+      },
+      {
+        "id": "K-M-15",
+        "title": "Pattern Completion",
+        "question": "What comes next in the pattern: 2, 4, 6, ?",
+        "choices": ["7", "8", "9"],
+        "answer": "8",
+        "explanation": "The pattern counts by twos: 2, 4, 6, 8."
+      }
     ],
     "Reading": [
       {
@@ -86,6 +167,88 @@
         "answer": "ball",
         "explanation": "The /b/ sound starts the word 'ball'."
       }
+      ,
+      {
+        "id": "K-R-06",
+        "title": "Alphabet Order",
+        "question": "Which letter comes after C?",
+        "choices": ["B", "D", "E"],
+        "answer": "D",
+        "explanation": "The alphabet goes A, B, C, D, so D comes after C."
+      },
+      {
+        "id": "K-R-07",
+        "title": "Rhyming Words",
+        "question": "Which word rhymes with 'dog'?",
+        "choices": ["dig", "bug", "fog"],
+        "answer": "fog",
+        "explanation": "'Dog' and 'fog' both end with the 'og' sound."
+      },
+      {
+        "id": "K-R-08",
+        "title": "Sight Word Recognition",
+        "question": "Which word spells 'the'?",
+        "choices": ["teh", "the", "thE"],
+        "answer": "the",
+        "explanation": "The letters t‑h‑e in that order spell 'the'."
+      },
+      {
+        "id": "K-R-09",
+        "title": "Sentence Comprehension",
+        "passage": "The dog is big and brown.",
+        "question": "What color is the dog?",
+        "choices": ["white", "brown", "black"],
+        "answer": "brown",
+        "explanation": "The sentence says the dog is big and brown."
+      },
+      {
+        "id": "K-R-10",
+        "title": "Syllable Counting",
+        "question": "How many syllables are in the word 'apple'?",
+        "choices": ["1", "2", "3"],
+        "answer": "2",
+        "explanation": "Ap‑ple has two syllables."
+      },
+      {
+        "id": "K-R-11",
+        "title": "Onset and Rime",
+        "question": "Combine the sounds /h/ and /at/ to make a word.",
+        "choices": ["hat", "hit", "hot"],
+        "answer": "hat",
+        "explanation": "The sounds /h/ + /at/ make the word 'hat'."
+      },
+      {
+        "id": "K-R-12",
+        "title": "Opposite Words",
+        "question": "Which word is the opposite of 'up'?",
+        "choices": ["in", "down", "off"],
+        "answer": "down",
+        "explanation": "The opposite of up is down."
+      },
+      {
+        "id": "K-R-13",
+        "title": "First Letter",
+        "question": "What is the first letter of the alphabet?",
+        "choices": ["Z", "A", "C"],
+        "answer": "A",
+        "explanation": "The alphabet begins with the letter A."
+      },
+      {
+        "id": "K-R-14",
+        "title": "Choose the Correct Spelling",
+        "question": "Which word spells 'sun'?",
+        "choices": ["son", "sun", "sunn"],
+        "answer": "sun",
+        "explanation": "The letters s‑u‑n spell 'sun'."
+      },
+      {
+        "id": "K-R-15",
+        "title": "Word Meaning",
+        "question": "Which word means 'small'?",
+        "choices": ["big", "tiny", "loud"],
+        "answer": "tiny",
+        "explanation": "'Tiny' describes something very small."
+      }
     ],
     "Science": [
       {
@@ -128,6 +291,87 @@
         "choices": ["Umbrella", "Sunglasses", "Mittens"],
         "answer": "Umbrella",
         "explanation": "We use an umbrella to stay dry in the rain."
+      }
+      ,
+      {
+        "id": "K-S-06",
+        "title": "Seasons",
+        "question": "Which season is hot and sunny?",
+        "choices": ["Winter", "Autumn", "Summer"],
+        "answer": "Summer",
+        "explanation": "Summer is usually hot and sunny."
+      },
+      {
+        "id": "K-S-07",
+        "title": "Body Parts",
+        "question": "Which part of your body do you use to hear?",
+        "choices": ["Eyes", "Ears", "Hands"],
+        "answer": "Ears",
+        "explanation": "We hear with our ears."
+      },
+      {
+        "id": "K-S-08",
+        "title": "Animal Identification",
+        "question": "Which one is a bird?",
+        "choices": ["Dog", "Duck", "Fish"],
+        "answer": "Duck",
+        "explanation": "A duck is a bird because it has feathers and lays eggs."
+      },
+      {
+        "id": "K-S-09",
+        "title": "Plant Leaves",
+        "question": "What part of a plant makes food using sunlight?",
+        "choices": ["Roots", "Leaves", "Stem"],
+        "answer": "Leaves",
+        "explanation": "Leaves use sunlight, water and air to make food for the plant."
+      },
+      {
+        "id": "K-S-10",
+        "title": "Day and Night",
+        "question": "What do we see in the sky at night?",
+        "choices": ["Sun", "Moon", "Clouds"],
+        "answer": "Moon",
+        "explanation": "The moon is visible in the night sky."
+      },
+      {
+        "id": "K-S-11",
+        "title": "States of Matter",
+        "question": "When ice melts, it becomes _____.",
+        "choices": ["water", "snow", "steam"],
+        "answer": "water",
+        "explanation": "Melting ice changes from solid to liquid water."
+      },
+      {
+        "id": "K-S-12",
+        "title": "Healthy Habits",
+        "question": "What should you do to keep your hands clean?",
+        "choices": ["Clap them", "Wash them", "Paint them"],
+        "answer": "Wash them",
+        "explanation": "Washing your hands removes dirt and germs."
+      },
+      {
+        "id": "K-S-13",
+        "title": "Simple Science",
+        "question": "What falls from the sky when it rains?",
+        "choices": ["Rain", "Sand", "Snow"],
+        "answer": "Rain",
+        "explanation": "Rain drops fall from clouds when it rains."
+      },
+      {
+        "id": "K-S-14",
+        "title": "Earth Materials",
+        "question": "What can you use to build a sandcastle?",
+        "choices": ["Snow", "Sand", "Leaves"],
+        "answer": "Sand",
+        "explanation": "Sand is used to build sandcastles at the beach."
+      },
+      {
+        "id": "K-S-15",
+        "title": "Helping the Earth",
+        "question": "What should we do with paper instead of throwing it away?",
+        "choices": ["Burn it", "Recycle it", "Eat it"],
+        "answer": "Recycle it",
+        "explanation": "Recycling paper helps protect natural resources."
       }
     ]
   },
@@ -174,6 +418,87 @@
         "answer": "70",
         "explanation": "The 7 is in the tens place, so its value is seventy."
       }
+      ,
+      {
+        "id": "3-M-06",
+        "title": "Pattern Sequence",
+        "question": "What comes next in the pattern: 5, 10, 15, ?",
+        "choices": ["18", "20", "25"],
+        "answer": "20",
+        "explanation": "The pattern increases by 5 each time: 5, 10, 15, 20."
+      },
+      {
+        "id": "3-M-07",
+        "title": "Multiplication Facts",
+        "question": "What is 6 x 7?",
+        "choices": ["42", "36", "49"],
+        "answer": "42",
+        "explanation": "Six groups of seven equals forty‑two."
+      },
+      {
+        "id": "3-M-08",
+        "title": "Division Facts",
+        "question": "What is 20 ÷ 5?",
+        "choices": ["4", "5", "6"],
+        "answer": "4",
+        "explanation": "Twenty divided by five equals four."
+      },
+      {
+        "id": "3-M-09",
+        "title": "Equivalent Fractions",
+        "question": "Which fraction is equivalent to 1/2?",
+        "choices": ["2/4", "1/3", "3/6"],
+        "answer": "2/4",
+        "explanation": "Two‑fourths reduces to one‑half."
+      },
+      {
+        "id": "3-M-10",
+        "title": "Comparing Fractions",
+        "question": "Which is larger: 3/4 or 2/3?",
+        "choices": ["3/4", "2/3", "They are equal"],
+        "answer": "3/4",
+        "explanation": "Three‑fourths is larger than two‑thirds."
+      },
+      {
+        "id": "3-M-11",
+        "title": "Perimeter of a Rectangle",
+        "question": "A rectangle is 5 units long and 2 units wide. What is its perimeter?",
+        "choices": ["7", "10", "14"],
+        "answer": "14",
+        "explanation": "Perimeter = 2 × (length + width) = 2 × (5 + 2) = 14."
+      },
+      {
+        "id": "3-M-12",
+        "title": "Place Value",
+        "question": "In the number 3,452 what is the value of the 4?",
+        "choices": ["4", "40", "400"],
+        "answer": "400",
+        "explanation": "The digit 4 is in the hundreds place, so it represents four hundred."
+      },
+      {
+        "id": "3-M-13",
+        "title": "Money Addition",
+        "question": "If you have two quarters, one dime and one nickel, how much money do you have?",
+        "choices": ["70¢", "65¢", "60¢"],
+        "answer": "65¢",
+        "explanation": "Two quarters = 50¢, one dime = 10¢, one nickel = 5¢; total = 65¢."
+      },
+      {
+        "id": "3-M-14",
+        "title": "Multiplying by Zero",
+        "question": "What is 9 × 0?",
+        "choices": ["0", "9", "1"],
+        "answer": "0",
+        "explanation": "Any number multiplied by zero equals zero."
+      },
+      {
+        "id": "3-M-15",
+        "title": "Simple Word Problem",
+        "question": "You have 12 cookies and you share them equally among 4 friends. How many cookies does each friend get?",
+        "choices": ["2", "3", "4"],
+        "answer": "3",
+        "explanation": "Twelve divided by four equals three cookies each."
+      }
     ],
     "Reading": [
       {
@@ -219,6 +544,91 @@
         "answer": "hot",
         "explanation": "'Hot' is the antonym, or opposite, of 'cold'."
       }
+      ,
+      {
+        "id": "3-R-06",
+        "title": "Context Clues",
+        "passage": "The girl glided gracefully across the stage during her ballet performance.",
+        "question": "What does 'glided' most nearly mean?",
+        "choices": ["jumped", "moved smoothly", "ran fast"],
+        "answer": "moved smoothly",
+        "explanation": "In context, 'glided' means moved smoothly and gracefully."
+      },
+      {
+        "id": "3-R-07",
+        "title": "Fact or Opinion",
+        "question": "'Cats are the best pets in the world.' Is this a fact or an opinion?",
+        "choices": ["Fact", "Opinion", "Neither"],
+        "answer": "Opinion",
+        "explanation": "This sentence expresses a personal feeling, not a fact."
+      },
+      {
+        "id": "3-R-08",
+        "title": "Sequence of Events",
+        "passage": "In the morning I brush my teeth, then I eat breakfast.",
+        "question": "What happens first?",
+        "choices": ["Eat breakfast", "Brush teeth", "Go to school"],
+        "answer": "Brush teeth",
+        "explanation": "The passage states that brushing teeth happens before breakfast."
+      },
+      {
+        "id": "3-R-09",
+        "title": "Synonyms",
+        "question": "Which word is a synonym for 'begin'?",
+        "choices": ["start", "stop", "end"],
+        "answer": "start",
+        "explanation": "'Begin' and 'start' mean the same thing."
+      },
+      {
+        "id": "3-R-10",
+        "title": "Prefixes",
+        "question": "What does the prefix 're-' mean in 'rewrite'?",
+        "choices": ["before", "again", "not"],
+        "answer": "again",
+        "explanation": "The prefix 're-' means again; 'rewrite' means write again."
+      },
+      {
+        "id": "3-R-11",
+        "title": "Suffixes",
+        "question": "What does the suffix '-ful' mean in 'joyful'?",
+        "choices": ["full of", "without", "able to"],
+        "answer": "full of",
+        "explanation": "The suffix '-ful' means 'full of'; 'joyful' means full of joy."
+      },
+      {
+        "id": "3-R-12",
+        "title": "Homophones",
+        "question": "Which pair of words are homophones?",
+        "choices": ["blue / blew", "run / ran", "big / small"],
+        "answer": "blue / blew",
+        "explanation": "'Blue' and 'blew' sound the same but have different meanings and spellings."
+      },
+      {
+        "id": "3-R-13",
+        "title": "Cause and Effect",
+        "passage": "It rained all day, so the soccer game was cancelled.",
+        "question": "Why was the soccer game cancelled?",
+        "choices": ["The field was dry", "It rained all day", "No one wanted to play"],
+        "answer": "It rained all day",
+        "explanation": "The cause of the cancellation was the rain."
+      },
+      {
+        "id": "3-R-14",
+        "title": "Main Idea",
+        "passage": "Birds build nests in trees to protect their eggs from predators.",
+        "question": "What is the main idea of the sentence?",
+        "choices": ["Trees grow high", "Birds build nests to keep eggs safe", "Predators like eggs"],
+        "answer": "Birds build nests to keep eggs safe",
+        "explanation": "The sentence explains that birds build nests to protect their eggs."
+      },
+      {
+        "id": "3-R-15",
+        "title": "Compound Words",
+        "question": "Which of these is a compound word?",
+        "choices": ["sunflower", "cat", "book"],
+        "answer": "sunflower",
+        "explanation": "A compound word is formed from two smaller words; 'sun' + 'flower' = 'sunflower'."
+      }
     ],
     "Science": [
       {
@@ -261,6 +671,87 @@
         "choices": ["metal", "plastic", "wood"],
         "answer": "metal",
         "explanation": "Metals allow electricity to flow through them."
+      }
+      ,
+      {
+        "id": "3-S-06",
+        "title": "Gravity",
+        "question": "What force pulls objects toward the Earth?",
+        "choices": ["Magnetism", "Friction", "Gravity"],
+        "answer": "Gravity",
+        "explanation": "Gravity pulls objects toward the centre of the Earth."
+      },
+      {
+        "id": "3-S-07",
+        "title": "Forms of Energy",
+        "question": "What kind of energy do we get from the sun?",
+        "choices": ["Sound", "Light", "Mechanical"],
+        "answer": "Light",
+        "explanation": "The sun provides light energy and also heat energy."
+      },
+      {
+        "id": "3-S-08",
+        "title": "Food Chains",
+        "question": "An animal that eats only plants is called a(n) _____",
+        "choices": ["herbivore", "carnivore", "omnivore"],
+        "answer": "herbivore",
+        "explanation": "Herbivores eat only plants."
+      },
+      {
+        "id": "3-S-09",
+        "title": "Weather and Climate",
+        "question": "What tool is used to measure temperature?",
+        "choices": ["Thermometer", "Barometer", "Compass"],
+        "answer": "Thermometer",
+        "explanation": "A thermometer measures how hot or cold it is."
+      },
+      {
+        "id": "3-S-10",
+        "title": "Water Cycle",
+        "question": "When water evaporates from lakes and oceans, it turns into ______.",
+        "choices": ["ice", "rain", "water vapor"],
+        "answer": "water vapor",
+        "explanation": "Evaporation changes liquid water into water vapour in the air."
+      },
+      {
+        "id": "3-S-11",
+        "title": "Mixtures and Solutions",
+        "question": "What is a mixture of salt and water called?",
+        "choices": ["Solution", "Solid", "Gas"],
+        "answer": "Solution",
+        "explanation": "Salt dissolved in water forms a solution."
+      },
+      {
+        "id": "3-S-12",
+        "title": "Natural Resources",
+        "question": "Which of these is a renewable resource?",
+        "choices": ["Coal", "Sunlight", "Oil"],
+        "answer": "Sunlight",
+        "explanation": "Sunlight is constantly available and cannot be used up."
+      },
+      {
+        "id": "3-S-13",
+        "title": "Force and Motion",
+        "question": "A push or pull that can change the motion of an object is called a ______.",
+        "choices": ["force", "mass", "speed"],
+        "answer": "force",
+        "explanation": "A force is any push or pull on an object."
+      },
+      {
+        "id": "3-S-14",
+        "title": "Solar System",
+        "question": "Which planet is closest to the Sun?",
+        "choices": ["Earth", "Mars", "Mercury"],
+        "answer": "Mercury",
+        "explanation": "Mercury is the planet closest to the Sun."
+      },
+      {
+        "id": "3-S-15",
+        "title": "Life Cycle of a Frog",
+        "question": "What is the correct order of a frog's life cycle?",
+        "choices": ["Egg → Adult → Tadpole", "Tadpole → Egg → Adult", "Egg → Tadpole → Adult"],
+        "answer": "Egg → Tadpole → Adult",
+        "explanation": "Frogs start as eggs, hatch into tadpoles, and grow into adults."
       }
     ]
   }
