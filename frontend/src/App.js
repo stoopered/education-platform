@@ -160,49 +160,26 @@ function Dashboard({ grade, onLogout }) {
 }
 
 export default function App() {
-  // Allow skipping login for local development by setting
-  // REACT_APP_SKIP_LOGIN=true.  When skipLogin is true the app
-  // immediately shows the grade selector.  The flag is pulled from
-  // SKIP_LOGIN_FLAG which is set at build time via DefinePlugin.
-  const skipLogin = SKIP_LOGIN_FLAG === 'true';
-  const [stage, setStage] = useState(skipLogin ? 'grade' : 'loading');
+  /*
+   * For now we disable the sign‑in flow entirely so the application
+   * lands directly on the grade selection page.  When authentication
+   * is re‑enabled you can restore the login logic and set `stage`
+   * accordingly.
+   */
+  const [stage, setStage] = useState('grade');
   const [grade, setGrade] = useState(null);
 
-  useEffect(() => {
-    if (skipLogin) {
-      // Skip authentication check entirely
-      setStage('grade');
-      return;
-    }
-    // Check if user is already signed in
-    Auth.currentAuthenticatedUser()
-      .then(() => setStage('grade'))
-      .catch(() => setStage('login'));
-  }, [skipLogin]);
-
-  const handleLogin = () => {
-    setStage('grade');
-  };
   const handleSelectGrade = (g) => {
     setGrade(g);
     setStage('dashboard');
   };
-  const handleLogout = async () => {
-    try {
-      await Auth.signOut();
-    } catch (err) {
-      console.error('Failed to sign out', err);
-    }
+
+  const handleLogout = () => {
+    // In a future version this should call Auth.signOut();
     setGrade(null);
-    setStage('login');
+    setStage('grade');
   };
 
-  if (stage === 'loading') {
-    return <p style={{ textAlign: 'center', marginTop: '2rem' }}>Loading…</p>;
-  }
-  if (stage === 'login') {
-    return <LoginForm onLogin={handleLogin} />;
-  }
   if (stage === 'grade') {
     return <GradeSelector onSelect={handleSelectGrade} />;
   }
